@@ -4,6 +4,7 @@ import PrimarySearchAppBar from "./Components/Navigation";
 import Blog from "./Blog";
 import Register from "./Components/Register";
 import LogInPage from "./Components/LogIn";
+import NewPost from "./Components/NewPost";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path="/" exact element={<HomeComponent />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/add-new" element={<HomeComponent />} />
+        <Route path="/add-new" element={<NewPost />} />
         <Route path="/blog/:id" element={<Blog />} />
       </Routes>
     </Router>

@@ -1,17 +1,28 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
-import { getCurrentUserAction, getPostDataAction } from "./Components/redux/actions";
+import {
+  getCurrentUserAction,
+  getPostDataAction,
+} from "./Components/redux/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ImgMediaCard from "./Components/BlogCard";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const HomeComponent = () => {
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPostDataAction());
-    dispatch(getCurrentUserAction())
+    if (!localStorage.getItem("User")) navigate("/login");
+    if (searchParams.get("accessToken")) {
+      localStorage.setItem("User", searchParams.get("accessToken"));
+      navigate("/");
+      dispatch(getCurrentUserAction());
+    }
   }, []);
 
   const posts = useSelector((state) => state.posts);

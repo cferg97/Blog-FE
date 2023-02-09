@@ -8,12 +8,15 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden
-    ;
+    overflow-x: hidden;
 }
 
 html {
     height: 100vh;
     width: 100vw;
     background-color: #46494C;
+}
+
+.ql-editor {
+    height: 30rem;
 }

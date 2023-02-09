@@ -9,7 +9,7 @@ export const getPostDataAction = () => {
       if (response.ok) {
         dispatch({
           type: GET_POST_DATA,
-          payload: fetchedData.posts,
+          payload: fetchedData.posts.reverse(),
         });
       } else {
         console.log("Error fetching posts");
@@ -78,6 +78,31 @@ export const registerAction = (userInput) => {
       });
       if (response.ok) {
         alert("user registered successfully");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const newPostAction = (postToSend) => {
+  const storageToken = localStorage.getItem("User");
+  const token = storageToken.split('"').join("");
+  return async (dispatch) => {
+    try {
+      let response = await fetch("http://localhost:3001/posts", {
+        method: "POST",
+        body: JSON.stringify(postToSend),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        console.log("success!");
+        dispatch(getPostDataAction());
+      } else {
+        console.log("Error posting");
       }
     } catch (err) {
       console.log(err);
