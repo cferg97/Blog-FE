@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { logInAction } from "./redux/actions";
+import {FcGoogle} from "react-icons/fc"
 
 const LogInPage = () => {
   const dispatch = useDispatch();
@@ -107,6 +108,11 @@ const LogInPage = () => {
           <Container fluid>
             <p>Not registered?</p>
             <Link to="/register">Register Here</Link>
+          </Container>
+          <Container fluid>
+            <p>Or</p>
+
+            <a href="http://localhost:3001/authors/googleLogin"><Button variant="outlined"><FcGoogle style={{marginRight: "5px"}}/> Sign In With Google</Button></a>
           </Container>
         </Paper>
       </Box>
